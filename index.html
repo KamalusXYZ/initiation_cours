@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Labo de test TP</title>
+</head>
+
+<body>
+
+
+
+    <h1>Application js</h1>
+    <div id="app">
+        {{nom}} <br>
+        {{prenom}} <br>
+        Heure de connexion: {{date}} <br>
+        {{nomComplet}} {{age}} <br>
+        <p v-if="showStory == true">{{story}}</p>
+        <p v-else>{{story | excerpt}}</p>
+
+        <button @click="showStory = !showStory">afficher le texte</button> <br> <br> <br>
+
+        <ul>
+            <li v-for="voyage of voyages">{{voyage}}</li>
+        </ul>
+
+        horloge: <span v-bind:title="time"> {{time}} </span> <br> <br> <br>
+
+        <p>Liaison de données bi-directionnelle</p>
+
+        <input type="text" v-model="nom" /> <br>
+        <input type="text" v-model="prenom" /> <br>
+        <input type="date" v-model="birthday" /><br>
+
+        <textarea rows="5" v-model="story"></textarea> <br> <br>
+        afficher la story? <br>
+        <input type="radio" name="afficher" v-model="showStory" v-bind:value="true" /> Oui
+        <input type="radio" name="afficher" v-model="showStory" v-bind:value="false" /> Non
+        <br>
+        Ajouter un pays:
+        <select name="listepays" id="pays-select" v-on:change="addCountry">
+            <option>Selectionnez</option>
+            <option value="Norvege">Norvege</option>
+            <option value="Usa">Usa</option>
+            <option value="Canada">Canada</option>
+
+        </select> <br> <br>
+
+        <p>Facturation</p>
+        <label for="prix">Prix</label> <br>
+        <input v-model.number="price" type="number" min="1" name="prix" /> <br>
+        <label for="quantite">Quantité</label> <br>
+        <input v-model.number="quantity" type="number" min="1" name="quantite" /> <br> <br>
+
+        <select name="taux" id="taux-select" v-model.number="taux">
+
+            <option value="0">0%</option>
+            <option value="5">5%</option>
+            <option value="10">10%</option>
+            <option value="15">15%</option>
+            <option value="20">20%</option>
+
+
+
+        </select>
+
+        <button v-on:click="calcHt">Calculer le HT</button>
+        <h3>Total Ht : {{totalht}} €</h3>
+
+        <button v-on:click="calcTtc">Calculer le TTC</button>
+        <h3>Total ttc : {{totalttc}} €</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</body>
+<script src="/js/app.js"></script>
+
+</html>
