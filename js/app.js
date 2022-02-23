@@ -1,3 +1,28 @@
+let LocalCmp = {
+  template: `<div>
+  <h1>Génère un nombre aléatoire entre {{min}} et {{max}} : {{randomNumber}} </h1>
+  <button v-on:click="generateRandom">Generer</button>
+  
+  </div>`,
+  props: ["min", "max"],
+  data: function () {
+    return {
+      randomNumber: 0,
+
+    }
+
+  },
+  methods: {
+
+    generateRandom: function () {
+
+      this.randomNumber = Math.floor(Math.random() * (this.max - this.min) + this.min)
+
+    }
+  }
+};
+
+
 let vm = new Vue({
   /*Création d'une instance de vue, et passage du code en option*/
   el: '#app',
@@ -18,7 +43,13 @@ let vm = new Vue({
     quantity: 0,
     taux: 20,
     totalht: 0,
-    totalttc: 0
+    totalttc: 0,
+
+
+  },
+
+  components: {
+    "nbr-aleatoire": LocalCmp
 
   },
 
@@ -99,6 +130,8 @@ let vm = new Vue({
       this.totalttc = this.taux * this.totalht / 100 + this.totalht
 
     }
+
+
 
   }
 });
